@@ -1,0 +1,79 @@
+@{
+    ViewData["Title"] = "TeamTodo";
+}
+
+@section Styles {
+    <link href="/lib/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
+}
+
+@section Scripts{
+    <script src="/lib/angular/angular.js"></script>
+    <script src="/lib/angular-route/angular-route.js"></script>
+    <script src="/lib/angular-xeditable/dist/js/xeditable.js"></script>
+    <script src="~/js/app/simpleControls.js"></script>
+    <script src="~/js/app/app-todos.js"></script>
+    <script src="~/js/app/todoController.js"></script>  
+}
+
+<h2>All todos</h2>
+
+<div ng-app="app-todos">
+
+    <div ng-controller="todoController as vm">
+        <p></p>
+        
+        
+        <div class="row">
+            <div ng-repeat="todo in vm.todos">
+                <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <strong><a href="#" editable-text="todo.name" onbeforesave="vm.updateTodo(todo)">
+                            {{ todo.name || 'No title' }}
+                            </a></strong><br><br>
+                        <i class="fa fa-list"></i>
+                        <a href="#" editable-select="todo.type" e-ng-options="type.name as type.name for type in vm.types" onaftersave="vm.updateTodo(todo)">
+                            {{ vm.showType(todo) }}
+                        </a>
+                        <!-- <span ng-if="todo.type">{{ todo.type }}</span>
+                        <span ng-if="!todo.type">None</span> -->
+                        <br>
+                        <i class="fa fa-user"></i>
+                        <a href="#" editable-select="todo.user" e-ng-options="user.name as user.name for user in vm.users" onaftersave="vm.updateTodo(todo)">
+                            {{ vm.showUser(todo) }}
+                        </a>
+                        
+                        <div class="text-right">
+                            <a href="#" ng-click="vm.setComplete(todo, true)" ng-show="!todo.isComplete" title="Mark as complete">
+                            <i class="fa fa-check-circle-o fa-lg"></i>
+                            </a>
+                            <a href="#" ng-click="vm.setComplete(todo, false)" ng-show="todo.isComplete" title="Mark as incomplete">
+                            <i class="fa fa-check-circle fa-lg"></i>
+                            </a>
+                            <a href="#" ng-click="vm.removeTodo(todo)" title="Delete this todo-item">
+                            <i class="fa fa-times fa-lg"></i>
+                            </a>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default" style="min-height: 132px">
+                    <div class="panel-body text-center">
+                        <br>
+                        <a href="#" ng-click="vm.addBlankTodo()">
+                            <i class="fa fa-plus center fa-3x"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    
+</div>

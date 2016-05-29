@@ -1,0 +1,26 @@
+@{
+    ViewData["Title"] = "TeamTodo";
+}
+
+@section Styles {
+    <link href="/lib/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
+    <link href="~/css/app.css">
+}
+
+@section Scripts{
+    <script src="/lib/angular/angular.min.js"></script>
+    <script src="/lib/angular-route/angular-route.min.js"></script>
+    <script src="/lib/angular-xeditable/dist/js/xeditable.js"></script>
+    <script src="~/js/app/simpleControls.js"></script>
+    <script src="~/js/app/app-todos.js"></script>
+    <script src="~/js/app/todoController.js"></script>
+    <script src="~/js/app/typeController.js"></script>  
+    <script src="~/js/app/userController.js"></script>
+    <script src="~/js/app/userDetailController.js"></script>  
+}
+
+<div ng-app="app-todos">
+
+    <div ng-view></div>
+    
+</div>

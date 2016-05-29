@@ -1,0 +1,79 @@
+<h2>All todos</h2>
+<div class="indicators">
+    <wait-cursor display-when="vm.isBusy"></wait-cursor>
+    <span class="text-danger" ng-show="vm.errorMessage">{{ vm.errorMessage }}</span>
+</div>
+<p></p>
+
+
+<div class="row">
+    <div ng-repeat="todo in vm.todos">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <strong><a href="#" editable-text="todo.name" buttons="no" onbeforesave="vm.updateTodo(todo)">
+                            {{ todo.name || 'No title' }}
+                            </a></strong><br>
+                            
+                    <a type="button" class="todo-description" ng-click="vm.openDescModal(todo)">{{ todo.description || 'No description' | limitTo: 20 }}...</a><br><br>
+                            
+                    <i class="fa fa-list"></i>
+                    <a type="button" editable-select="todo.type" buttons="no" e-ng-options="type.name as type.name for type in vm.types" onaftersave="vm.updateTodo(todo)">
+                            {{ vm.showType(todo) }}
+                    </a>
+                    <br>
+                    <i class="fa fa-user"></i>
+                    <a type="button" editable-select="todo.user" buttons="no" e-ng-options="user.name as user.name for user in vm.users" onaftersave="vm.updateTodo(todo)">
+                            {{ vm.showUser(todo) }}
+                        </a>
+
+                    <div class="text-right">
+                        <a type="button" class="incomplete" ng-click="vm.setComplete(todo, true)" ng-show="!todo.isComplete" title="Mark as complete">
+                            <i class="fa fa-check-circle-o fa-lg"></i>
+                        </a>
+                        <a type="button" class="complete" ng-click="vm.setComplete(todo, false)" ng-show="todo.isComplete" title="Mark as incomplete">
+                            <i class="fa fa-check-circle fa-lg"></i>
+                        </a>
+                        <a type="button" class="delete" ng-click="vm.removeTodo(todo)" title="Delete this todo-item">
+                            <i class="fa fa-times fa-lg"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default" style="min-height: 132px">
+            <div class="panel-body text-center">
+                <br>
+                <a type="button" class="add-item" ng-click="vm.addBlankTodo()">
+                    <i class="fa fa-plus center fa-3x"></i>
+                </a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="todoDescModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{{ vm.modalTodo.name }}</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <a href="#" editable-textarea="vm.modalTodo.description" onaftersave="vm.setDescription(vm.modalTodo)" e-rows="7" e-cols="40">
+                        {{ vm.modalTodo.description || 'No Description' }}
+                    </a>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

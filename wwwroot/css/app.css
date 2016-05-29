@@ -1,0 +1,9 @@
+a {
+    color: black !important;
+    border-bottom: dashed 1px black !important;
+}
+
+.editable-click a.editable-click a {
+    color: black !important;
+    border-bottom: dashed 1px black !important;
+}
