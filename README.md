@@ -18,7 +18,7 @@ Using the dotnet CLI:
 *   run 'dotnet restore' to install nuget packages
 *   run 'bower install' (optional since libraries are included in the repo)
 *   run 'dotnet update database' to create the local sqlite database-file
-*   make sure you have the local environment variable ASPNET_CORE_DEVELOPMENT set to "Development"
+*   make sure you have the local environment variable ASPNETCORE_DEVELOPMENT set to "Development"
 *   run 'dotnet run'
 *   navigate to localhost:5000
 
